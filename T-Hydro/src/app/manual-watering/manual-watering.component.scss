@@ -1,0 +1,29 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding-left: 0.4rem;
+
+    i {
+      font-size: 1.8rem;
+    }
+  }
+
+  .table {
+    flex: 1 1 auto;
+    overflow-y: hidden;
+  }
+}
+
+.valve {
+  width: 18%;
+}
+
+.spaceForMenu {
+  height: 66px;
+}

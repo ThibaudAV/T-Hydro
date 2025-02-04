@@ -1,0 +1,54 @@
+<div class="content">
+  <h2><i class="pi pi-crown"></i> Commande manuelle</h2>
+
+  <p-table
+    #table
+    class="table"
+    [value]="valves"
+    [scrollable]="true"
+    scrollHeight="flex"
+    [tableStyle]="{ 'min-width': '1rem' }"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Nº de vanne</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-valve>
+      <tr>
+        <td class="valve">
+          <p-badge [value]="valve.number" />
+        </td>
+        <td>
+          @switch (valve.state) {
+            @case ("RUNNING") {
+              <p-button
+                icon="pi pi-play-circle"
+                label="Ouverture forcée (30 minutes)"
+                class="w-full"
+                styleClass="w-full"
+              />
+            }
+            @case ("DISABLED") {
+              <p>Désactivée</p>
+            }
+            @case ("FORCED_ON") {
+              <p-button
+                icon="pi pi-stop-circle"
+                label="Arrêter l'overture forcée"
+                severity="warn"
+                class="w-full"
+                styleClass="w-full"
+                [outlined]="true"
+              />
+            }
+          }
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #footer>
+      <div class="spaceForMenu"></div>
+    </ng-template>
+  </p-table>
+</div>

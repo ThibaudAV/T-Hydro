@@ -1,0 +1,71 @@
+<div class="content">
+  <h2><i class="pi pi-list-check"></i> Programes d'arrosages</h2>
+
+  @if (wateringTimes$ | async; as wateringTimes) {
+    <p-table
+      #table
+      class="table"
+      [value]="wateringTimes"
+      [scrollable]="true"
+      scrollHeight="flex"
+      [tableStyle]="{ 'min-width': '1rem' }"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Nº de vanne</th>
+          <th>Nom</th>
+          <th>Heure de début</th>
+          <th>Fréquence</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-watering>
+        <tr>
+          <td>
+            <div class="watering-output">
+              <p-badge [value]="watering.outputId" />
+              <div [class.watering-status]="true">
+                <p-chip
+                  label="En cours"
+                  icon="pi pi-play"
+                  *ngIf="watering.isActive"
+                  styleClass="watering-status--play"
+                ></p-chip>
+                <p-chip
+                  label="En pause"
+                  icon="pi pi-pause"
+                  *ngIf="!watering.isActive"
+                  styleClass="watering-status--pause"
+                ></p-chip>
+              </div>
+            </div>
+          </td>
+          <td class="watering-name">{{ watering.name }}</td>
+          <td>{{ watering.startWateringDate | date: "MM-dd HH:mm" }}</td>
+          <td>
+            <span>{{ watering.durationReadable }}</span> toutes les
+            <span>{{ watering.frequencyReadable }}</span>
+          </td>
+          <td>
+            <p-menu
+              #wateringScheduleMenu
+              [model]="watering.menuItems"
+              [popup]="true"
+              [appendTo]="table"
+            />
+            <p-button
+              icon="pi pi-ellipsis-v"
+              [rounded]="true"
+              [text]="true"
+              (click)="wateringScheduleMenu.toggle($event)"
+            />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #footer>
+        <div class="spaceForMenu"></div>
+      </ng-template>
+    </p-table>
+  }
+</div>
+<p-confirmdialog />

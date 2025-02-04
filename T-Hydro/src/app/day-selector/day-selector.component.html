@@ -1,0 +1,23 @@
+<h2><i class="pi pi-calendar"></i> Agenda</h2>
+<p-tabs
+  class="tabs"
+  [value]="selectedDay.number"
+  scrollable
+  [selectOnFocus]="true"
+>
+  <p-tablist #tablist class="tablist">
+    @for (day of daysToDisplay; track day.number) {
+      <p-tab
+        [value]="day.number"
+        class="day-tab"
+        [routerLink]="'' + day.date.toISOString().split('T')[0]"
+      >
+        {{ day.name }}
+        <p-badge [value]="day.number" />
+      </p-tab>
+    }
+  </p-tablist>
+</p-tabs>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

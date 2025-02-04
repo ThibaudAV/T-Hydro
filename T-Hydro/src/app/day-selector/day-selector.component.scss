@@ -1,0 +1,48 @@
+.day-tab {
+  flex-direction: column;
+  padding: 0.475rem 0.825rem 0.825rem 0.825rem;
+}
+
+:host {
+  //overflow-y: hidden;
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-left: 0.4rem;
+
+  i {
+    font-size: 1.8rem;
+  }
+}
+
+.content {
+  height: calc(100vh - 142px);
+  display: flex;
+  flex-direction: column;
+}
+
+.tabs {
+  overflow-y: hidden;
+  //height: 100vh;
+
+  .tablist {
+    min-height: 73px;
+
+    --p-tabs-tab-active-color: var(--p-primary-contrast-color);
+    --p-tabs-tab-active-background: var(--p-primary-active-color);
+    --p-tabs-active-bar-background: var(--p-primary-color);
+  }
+
+  .tabpanels {
+    padding: 0 0.4rem;
+
+    .content {
+      height: calc(100vh - 142px);
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

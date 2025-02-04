@@ -1,0 +1,63 @@
+@if (loading()) {
+  Loading...
+} @else if (wateringSchedule.length > 0) {
+  <!--  <h2>-->
+  <!--    <i class="pi pi-calendar"></i> Agenda du-->
+  <!--    &lt;!&ndash;    {{ selectedDay.date | date: "dd/MM/yyyy" }}&ndash;&gt;-->
+  <!--  </h2>-->
+  <p-table
+    #table
+    class="table"
+    [value]="wateringSchedule"
+    [scrollable]="true"
+    scrollHeight="flex"
+    [tableStyle]="{ 'min-width': '1rem' }"
+  >
+    <ng-template #body let-watering>
+      <tr>
+        <td class="watering-status">
+          @if (watering.isActive) {
+            <div [class.watering-status--past]="watering.isPast">
+              <i class="pi pi-clock" *ngIf="!watering.isPast"></i>
+              <i class="pi pi-check" *ngIf="watering.isPast"></i>
+            </div>
+          } @else {
+            <div [class.watering-status--past]="watering.isPast">
+              <i class="pi pi-pause" *ngIf="!watering.isPast"></i>
+              <i class="pi pi-check" *ngIf="watering.isPast"></i>
+            </div>
+          }
+        </td>
+        <td>
+          <div class="watering-name">
+            <p-badge [value]="watering.outputId" />
+            {{ watering.name }}
+          </div>
+        </td>
+        <td>
+          {{ watering.startTime | date: "HH:mm" }} de
+          {{ watering.durationWatering }} minutes
+        </td>
+        <td>
+          <p-menu
+            #wateringScheduleMenu
+            [model]="watering.menuItems"
+            [popup]="true"
+            [appendTo]="table"
+          />
+          <p-button
+            icon="pi pi-ellipsis-v"
+            [rounded]="true"
+            [text]="true"
+            (click)="wateringScheduleMenu.toggle($event)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #footer>
+      <div class="spaceForMenu"></div>
+    </ng-template>
+  </p-table>
+} @else {
+  <p>Aucun arrosage prévu pour cette date.</p>
+}

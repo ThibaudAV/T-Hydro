@@ -1,0 +1,31 @@
+:host {
+  height: 100%;
+  display: block;
+}
+
+.table {
+  flex: 1 1 auto;
+  height: 100%;
+}
+
+.watering-status {
+  width: 0%;
+  i {
+    font-size: 1.5em;
+  }
+
+  &--past {
+    color: var(--p-primary-color);
+  }
+}
+
+.watering-name {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: bold;
+}
+
+.spaceForMenu {
+  height: 66px;
+}

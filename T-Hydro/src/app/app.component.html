@@ -1,0 +1,15 @@
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+<p-dock [model]="items" position="bottom">
+  <ng-template #item let-item>
+    <p-button
+      [pTooltip]="item.label"
+      tooltipPosition="top"
+      [icon]="item.icon"
+      [rounded]="true"
+      severity="primary"
+      [severity]="isRouteActive(item) ? 'primary' : 'secondary'"
+    ></p-button>
+  </ng-template>
+</p-dock>

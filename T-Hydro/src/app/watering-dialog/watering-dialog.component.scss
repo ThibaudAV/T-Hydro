@@ -1,0 +1,47 @@
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin: 0.8rem 0;
+
+  }
+
+  .fieldOutput {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0.8rem 0;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+
+
+    .p-selectbutton{
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2px 0;
+    }
+
+  }
+
+  .frequencyDefaultValueOptions {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  gap: 1rem;
+}

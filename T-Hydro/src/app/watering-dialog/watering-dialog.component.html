@@ -1,0 +1,148 @@
+<form [formGroup]="wateringForm" class="form">
+  <div class="fieldOutput">
+    <label>Numéro de vanne *</label>
+    <div>
+      <p-selectbutton
+        id="outputOption"
+        [options]="outputOptions"
+        optionLabel="label"
+        optionValue="value"
+        formControlName="outputId"
+        optionLabel="name"
+        optionValue="value"
+        fluid
+      ></p-selectbutton>
+      @if (
+        wateringForm.get("name")?.touched &&
+        wateringForm.get("outputId")?.hasError("required")
+      ) {
+        <p-message severity="error" variant="simple"
+          >Saisissez un numéro de vanne</p-message
+        >
+      }
+    </div>
+  </div>
+
+  <div class="field">
+    <p-floatlabel variant="in">
+      <input pInputText id="name" formControlName="name" fluid />
+      <label for="name">Nom *</label>
+    </p-floatlabel>
+
+    @if (
+      wateringForm.get("name")?.touched &&
+      wateringForm.get("name")?.hasError("required")
+    ) {
+      <p-message severity="error" variant="simple">Saisissez un nom</p-message>
+    }
+  </div>
+
+  <div class="field">
+    <p-floatlabel variant="in">
+      <input
+        pInputText
+        id="startWateringDate"
+        formControlName="startWateringDate"
+        type="datetime-local"
+        fluid
+      />
+      <label for="startWateringDate">Date de début *</label>
+    </p-floatlabel>
+  </div>
+
+  <div class="field">
+    <p-floatlabel variant="in">
+      <p-select
+        appendTo="body"
+        [options]="frequencyDefaultValueOptions"
+        optionLabel="frequencyDefaultValueOptions"
+        formControlName="frequencyDefaultValueOption"
+        fluid
+      >
+        <ng-template #selectedItem let-selectedOption>
+          <span>{{ selectedOption.label }}</span>
+        </ng-template>
+        <ng-template #item let-country>
+          <span>{{ country.label }}</span>
+        </ng-template>
+      </p-select>
+      <label for="frequencyMinutes">Fréquence *</label>
+    </p-floatlabel>
+
+    @if (displayFrequencyCustom) {
+      <p-floatlabel variant="in">
+        <p-inputNumber
+          id="frequencyMinutes"
+          formControlName="frequencyMinutes"
+          [min]="10"
+          [showButtons]="true"
+          buttonLayout="horizontal"
+          suffix=" m"
+          fluid
+        >
+          <ng-template #incrementbuttonicon>
+            <span class="pi pi-plus"></span>
+          </ng-template>
+          <ng-template #decrementbuttonicon>
+            <span class="pi pi-minus"></span>
+          </ng-template>
+        </p-inputNumber>
+
+        <label for="frequencyMinutes">Fréquence (minutes)</label>
+      </p-floatlabel>
+    }
+  </div>
+
+  <div class="field">
+    <p-floatlabel variant="in">
+      <p-inputNumber
+        id="durationMinutes"
+        formControlName="durationMinutes"
+        [min]="1"
+        [max]="360"
+        [showButtons]="true"
+        buttonLayout="horizontal"
+        suffix=" m"
+        fluid
+      >
+        <ng-template #incrementbuttonicon>
+          <span class="pi pi-plus"></span>
+        </ng-template>
+        <ng-template #decrementbuttonicon>
+          <span class="pi pi-minus"></span>
+        </ng-template>
+      </p-inputNumber>
+
+      <label for="durationMinutes">Durée (minutes) *</label>
+    </p-floatlabel>
+  </div>
+
+  <div class="field-checkbox">
+    <p-selectbutton
+      id="isActive"
+      formControlName="isActive"
+      [options]="[
+        { label: 'Actif', value: true },
+        { label: 'En Pause', value: false },
+      ]"
+      optionLabel="label"
+      optionValue="value"
+      fluid
+    ></p-selectbutton>
+  </div>
+</form>
+
+<div class="actions">
+  <p-button
+    label="Annuler"
+    icon="pi pi-times"
+    severity="secondary"
+    (click)="cancel()"
+  ></p-button>
+  <p-button
+    label="Enregistrer"
+    icon="pi pi-check"
+    (click)="save()"
+    [disabled]="wateringForm.invalid"
+  ></p-button>
+</div>
