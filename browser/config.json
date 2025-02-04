@@ -1,0 +1,28 @@
+{
+  "wateringSchedules": [
+    {
+      "outputId": 1,
+      "name": "Beton 1",
+      "isActive": true,
+      "startWateringDate": "2025-02-04 08:00:00",
+      "frequencyMinutes": 100,
+      "durationMinutes": 2
+    },
+    {
+      "outputId": 2,
+      "name": "Fraisier extérieur",
+      "isActive": false,
+      "startWateringDate": "2022-02-01 08:00:00",
+      "frequencyMinutes": 2881,
+      "durationMinutes": 60
+    },
+    {
+      "outputId": 3,
+      "name": "Exterieur Thaïs",
+      "isActive": false,
+      "startWateringDate": "2022-02-01 08:00:00",
+      "frequencyMinutes": 720,
+      "durationMinutes": 120
+    }
+  ]
+}
